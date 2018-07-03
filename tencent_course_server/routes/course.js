@@ -2,8 +2,8 @@ const express = require('express'),
     route = express.Router();
 
 route.get('/banner', (req, res) => {
-    //=>我就是把所有课程中的最后三条数据做为轮播图展示
-    let data = req.courseDATA.reverse().slice(0, 3);
+    //=>我就是把所有课程中的最后6条数据做为轮播图展示
+    let data = req.courseDATA.reverse().slice(0, 6);
     res.send({
         code: 0,
         msg: 'OK!',
