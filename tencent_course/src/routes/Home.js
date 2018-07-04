@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Carousel} from 'antd';
 import '../static/css/home.less';
 
-
 let IMG_DATA = [];
 for (let i = 1; i <= 6; i++) {
     IMG_DATA.push({
@@ -16,8 +15,14 @@ class Home extends React.Component {
         super(props, context)
     }
 
+
     render() {
         return <section className={'homeBox'}>
+            <Carousel autoplay>
+                {IMG_DATA.map((item, index) => {
+                    return <div key={index}><img src={item.pic} alt=""/></div>
+                })}
+            </Carousel>
             <div className={'banner'}>
                 <Carousel autoplay>
                     {IMG_DATA.map((item, index) => {
