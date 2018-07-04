@@ -25,6 +25,10 @@ export function register(payload) {
     return axios.post('/personal/register', payload);
 }
 
+//=>获取课程分类页数据
+export function queryList(payload) {
+    return axios.get('./personal/list');
+}
 
 
 

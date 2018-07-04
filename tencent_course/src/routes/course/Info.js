@@ -9,7 +9,6 @@ class Info extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            data: null,
             isShop: -1 //=>存储是否已经加入到购物车中 -1还没有加入购物车 0已加入但是未支付  1已支付
         };
     }

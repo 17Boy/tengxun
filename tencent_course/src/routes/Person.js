@@ -16,7 +16,7 @@ class Person extends React.Component {
     render() {
         return <section>
             <Switch>
-                <Route path='/person/info' component={Login}/>
+                <Route path='/person/info' component={Info}/>
                 <Route path='/person/login' component={Login}/>
                 <Route path='/person/register' component={Register}/>
                 <Redirect from='/person' to='/person/info'/>
