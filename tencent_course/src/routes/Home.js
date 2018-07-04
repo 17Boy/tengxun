@@ -2,6 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Carousel} from 'antd';
 import '../static/css/home.less';
+import {Switch,Route,Redirect} from 'react-router-dom';
+import List from './course/List';
+import Info from './course/Info'
+import action from "../store/action";
 
 let IMG_DATA = [];
 for (let i = 1; i <= 6; i++) {
@@ -15,23 +19,32 @@ class Home extends React.Component {
         super(props, context)
     }
 
+    async componentDidMount() {
+        let {queryBanner, bannerData, courseData, queryList} = this.props;
+        if (!bannerData || bannerData.length === 0) {
+            queryBanner();//=>DISPATCH
+        }
+    }
 
     render() {
+        let {bannerData, courseData} = this.props;
         return <section className={'homeBox'}>
-            <Carousel autoplay>
-                {IMG_DATA.map((item, index) => {
-                    return <div key={index}><img src={item.pic} alt=""/></div>
-                })}
-            </Carousel>
-            <div className={'banner'}>
-                <Carousel autoplay>
-                    {IMG_DATA.map((item, index) => {
-                        return <div key={index}><img src={item.pic} alt=""/></div>
+            {/*<Switch className={'banner'}>
+                <Route path='/course' exact component={List}/>
+                <Route path='/course/Info' component={Info}/>
+            </Switch>*/}
+
+            {/*轮播图*/}
+            <div className="banner">
+                {bannerData && bannerData.length !== 0 ? (<Carousel autoplay>
+                    {bannerData.map((item, index) => {
+                        let {title,scr} = item;
+                        return <div key={index}><img src={scr} alt={title}/></div>
                     })}
-                </Carousel>
+                </Carousel>) : ''}
             </div>
 
-            <div className="courseList">
+          <div className="courseList">
                 <ul className={'classLive clearfix'}>
                     <header>
                         <h2 className={'active'}>前端</h2>
@@ -203,4 +216,4 @@ class Home extends React.Component {
     }
 }
 
-export default connect()(Home);
+export default connect(state => ({...state.course}), action.course)(Home);

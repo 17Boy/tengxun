@@ -1,1 +1,3 @@
 export const QUERY_USER_INFO = 'QUERY_USER_INFO';
+
+export const COURSE_QUERY_BANNER = 'COURSE_QUERY_BANNER';
