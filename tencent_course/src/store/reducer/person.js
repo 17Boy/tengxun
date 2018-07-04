@@ -11,6 +11,8 @@ export default function person(state = INIT_STATE, action) {
             result = action.payload;
             if (parseFloat(result.code) === 0) {
                 state.userInfo = result.data
+            }else{
+                state.userInfo=null;
             }
             break;
     }
