@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {Carousel} from 'antd';
 import '../static/css/home.less';
 import {Switch,Route,Redirect} from 'react-router-dom';
-import List from './course/List';
-import Info from './course/Info'
+
 import action from "../store/action";
 
 let IMG_DATA = [];
@@ -30,11 +29,6 @@ class Home extends React.Component {
         let {bannerData, courseData} = this.props;
         return <section className={'homeBox'}>
 
-            {/*<Switch className={'banner'}>
-                <Route path='/course' exact component={List}/>
-                <Route path='/course/Info' component={Info}/>
-            </Switch>*/}
-
             {/*轮播图*/}
             <div className="banner">
                 {bannerData && bannerData.length !== 0 ? (<Carousel autoplay>
@@ -50,13 +44,7 @@ class Home extends React.Component {
                     return <div key={index}><img src={item.pic} alt=""/></div>
                 })}
             </Carousel>*/}
-            {/*<div className={'banner'}>
-                <Carousel autoplay>
-                    {IMG_DATA.map((item, index) => {
-                        return <div key={index}><img src={item.pic} alt=""/></div>
->>>>>>> 9695985eb88ec2e4c175ab91f766aa00d1547551
-                    })}
-                */}
+
 
           <div className="courseList">
                 <ul className={'classLive clearfix'}>
