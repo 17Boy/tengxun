@@ -1,6 +1,5 @@
 .homeBox {
 
-
   .banner {
     .slick-slide {
       height: 2.8rem;
@@ -26,12 +25,13 @@
     .classLive {
 
       header {
+
         h2 {
           display: inline-block;
           margin-right: .4rem;
           vertical-align: center;
 
-          &.active{
+          &.active {
             font-size: .4rem;
             border-bottom: .03rem solid #23b8ff;
           }
@@ -39,6 +39,7 @@
       }
 
       li {
+        display: flex;
 
         .imgStyle {
           width: 3.03rem;
@@ -54,15 +55,19 @@
           }
         }
 
-        div {
-          float: left;
+        .classDesc {
           margin-left: .2rem;
+          width: 2.8rem;
 
           h4 {
             font-size: .3rem;
             font-weight: bold;
-            margin-top: .2rem;
+
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
+
           p {
             font-size: .08rem;
             color: #000;
@@ -76,7 +81,7 @@
 
     }
 
-    .publicClass,.needPayClass {
+    .publicClass, .needPayClass {
       h2 {
         text-align: center;
         width: 2rem;
@@ -108,25 +113,24 @@
             }
           }
 
-          p{
+          p {
             margin-bottom: 0;
             color: #000;
             font-size: .25rem;
           }
-          span{
+          span {
             color: #57ade8;
           }
 
         }
 
-
       }
     }
   }
 
-  .moreCourse{
+  .moreCourse {
 
-    a{
+    a {
       display: block;
       margin: 0 10px 13px;
       border-radius: 2px;

@@ -37,17 +37,19 @@ class Home extends React.Component {
                         return <div key={index}><img src={scr} alt={title}/></div>
                     })}
                     </Carousel>) : ''}
-            </div>
 
-            {/*<Carousel autoplay>
+                {/*<Carousel autoplay>
                 {IMG_DATA.map((item, index) => {
                     return <div key={index}><img src={item.pic} alt=""/></div>
                 })}
             </Carousel>*/}
+            </div>
+
+
 
 
           <div className="courseList">
-                <ul className={'classLive clearfix'}>
+                <ul className={'classLive'}>
                     <header>
                         <h2 className={'active'}>前端</h2>
                         <h2>兴趣生活</h2>
@@ -56,8 +58,23 @@ class Home extends React.Component {
                         <div className={'imgStyle'}>
                             <img src={IMG_DATA[1].pic} alt=""/>
                         </div>
-                        <div>
-                            <h4>pure响应式</h4>
+
+                        <div className={'classDesc'}>
+                            <div>
+                                <h4>pure响应式炯炯法第三季度斐林试剂法律是否婕拉fgdgdfgdfgdfg</h4>
+                                <p>芳芳老师</p>
+                                <span>直播时间: 14:00</span>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div className={'imgStyle'}>
+                            <img src={IMG_DATA[1].pic} alt=""/>
+                        </div>
+                        <div className={'classDesc'}>
+                            <h4>pure响应式64165465465465465464</h4>
                             <p>芳芳老师</p>
                             <span>直播时间: 14:00</span>
                         </div>
@@ -66,17 +83,7 @@ class Home extends React.Component {
                         <div className={'imgStyle'}>
                             <img src={IMG_DATA[1].pic} alt=""/>
                         </div>
-                        <div>
-                            <h4>pure响应式</h4>
-                            <p>芳芳老师</p>
-                            <span>直播时间: 14:00</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={'imgStyle'}>
-                            <img src={IMG_DATA[1].pic} alt=""/>
-                        </div>
-                        <div>
+                        <div className={'classDesc'}>
                             <h4>pure响应式</h4>
                             <p>芳芳老师</p>
                             <span>直播时间: 14:00</span>
