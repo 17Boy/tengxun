@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Input} from 'antd';
-
+import {Link} from 'react-router-dom';
 
 
 class Search extends React.Component {
@@ -11,9 +11,13 @@ class Search extends React.Component {
 
     render() {
         return <section className={'searchBox'}>
-            <i/>
+
+            <Link to={'/course'}>
+                <i className={'logo'}/>
+            </Link>
+
             <Input.Search placeholder="input search text"
-                          style={{width:"80%"}}
+                          style={{width: "80%"}}
                           onSearch={value => console.log(value)}/>
         </section>
     }
