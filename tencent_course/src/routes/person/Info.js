@@ -1,43 +1,70 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Button} from 'antd';
-import {exitLogin} from '../../api/person';
 import action from '../../store/action/index';
+import {Button,Icon} from 'antd';
+import '../../static/css/person/info.less';
 
 class Info extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
 
-    componentWillMount() {
-        let {baseInfo, queryBaseInfo} = this.props;
-        !baseInfo ? queryBaseInfo() : null;
-    }
 
     render() {
-        let {baseInfo} = this.props;
-        if (!baseInfo) return '';
-        let {name, email, phone} = baseInfo;
 
         return <div className='personBaseInfo'>
-            <p>
-                <span>用户名：</span>
-                <span>{name}</span>
-            </p>
-            <p>
-                <span>邮箱：</span>
-                <span>{email}</span>
-            </p>
-            <p>
-                <span>电话：</span>
-                <span>{phone}</span>
-            </p>
+            <header>
+                <div className={'userInfo clearfix'}>
+                    <img src="" alt=""/>
+                    <span>用户名</span>
+                </div>
+                <div className={'userCollect'}>
+                    <div>
+                        <Icon type="shopping-cart" />
+                        <span>订单管理</span>
+                    </div>
+                    <div>
+                        <Icon type="heart-o" />
+                        <span>收藏</span>
+                    </div>
+                </div>
+            </header>
 
-            <Button type='danger' onClick={async (ev) => {
-                await exitLogin();
-                this.props.history.push('/person');
-            }}>退出登录</Button>
+            <ul className={"lists"}>
+                <li>
+                    <div className={'clearfix'}>
+                        <span>余额</span>
+                        <Icon type="right" />
+                        <span>0</span>
+                    </div>
+                    <div className={'clearfix'}>
+                        <span>优惠券</span>
+                        <Icon type="right" />
+                        <span>0</span>
+                    </div>
+                </li>
+                <li>
+                    <div className={'clearfix'}>
+                        <span>腾讯课堂大师班</span>
+                        <Icon type="right" />
+                    </div>
+                    <div className={'clearfix'}>
+                        <span>上课流量免费</span>
+                        <Icon type="right" />
+                    </div>
+                </li>
+                <li>
+                    <div className={'clearfix'}>
+                        <span>反馈建议</span>
+                        <Icon type="right" />
+                    </div>
+                    <div className={'clearfix'}>
+                        <span>设置</span>
+                        <Icon type="right" />
+                    </div>
+                </li>
+            </ul>
         </div>;
     }
 }
