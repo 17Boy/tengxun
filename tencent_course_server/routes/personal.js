@@ -18,6 +18,7 @@ function add_temp_store(req, res) {
 }
 
 route.post('/login', (req, res) => {
+    console.log(req.res);
     let {name, password} = req.body || {};
     //=>把秘密二次加密：因为注册的时候，存储到JSON中的密码是经过二次加密的，所以我们登录验证的时候也需要把密码二次加密，只有这样才会和JSON中的匹配
     password = password.substr(4, 24).split('').reverse().join('');
@@ -41,6 +42,7 @@ route.post('/login', (req, res) => {
 route.get('/login', (req, res) => {
     //=>是否登录就看SESSION中是否存在（后台服务重启，SESSION都消失）
     const personID = req.session.personID;
+    console.log(personID);
     if (personID) {
         res.send({code: 0, msg: 'OK!'});
         return;

@@ -5,6 +5,9 @@ import md5 from 'blueimp-md5';
 import {register} from '../../api/person';
 import action from '../../store/action/index';
 
+/*import css*/
+import '../../static/css/person/register.less';
+
 const FormItem = Form.Item;
 
 function loginFail() {

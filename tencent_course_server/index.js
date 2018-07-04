@@ -1,8 +1,7 @@
 const CONFIG = require('./config'),
     PERSONAL_PATH = './json/personal.json',
     COURSE_PATH = './json/course.json',
-    STORE_PATH = './json/store.json',
-    COURSE_DETAIL = './json/detail.json';
+    STORE_PATH = './json/store.json';
 
 /*-CREATE SERVER-*/
 const express = require('express'),
@@ -37,7 +36,6 @@ app.use(async (req, res, next) => {
     req.personalDATA = JSON.parse(await readFile(PERSONAL_PATH));
     req.courseDATA = JSON.parse(await readFile(COURSE_PATH));
     req.storeDATA = JSON.parse(await readFile(STORE_PATH));
-    req.storeDATA = JSON.parse(await readFile(COURSE_DETAIL));
     next();
 });
 
