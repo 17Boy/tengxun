@@ -18,11 +18,6 @@ class Home extends React.Component {
 
     render() {
         return <section className={'homeBox'}>
-            <Carousel autoplay>
-                {IMG_DATA.map((item, index) => {
-                    return <div key={index}><img src={item.pic} alt=""/></div>
-                })}
-            </Carousel>
             <div className={'banner'}>
                 <Carousel autoplay>
                     {IMG_DATA.map((item, index) => {
