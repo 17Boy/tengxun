@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Form, Icon, Input, Button, Checkbox, Modal} from 'antd';
+import {Modal} from 'antd';
 import {Link} from 'react-router-dom';
 import md5 from 'blueimp-md5';
-import {login,queryInfo} from '../../api/person';
+import {login} from '../../api/person';
 import action from '../../store/action/index';
 import '../../static/css/person/login.less';
 
@@ -14,7 +14,7 @@ function loginFail() {
         title: '登录失败',
         content: '请稍后重新尝试!',
     });
-    setTimeout(() => modal.destroy(), 100000);
+    setTimeout(() => modal.destroy(), 3000);
 }
 
 

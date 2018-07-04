@@ -18,6 +18,7 @@ import './static/css/common.less';
 /*IMPORT COMPONENT*/
 import Search from './component/Search';
 import NavBottom from './component/NavBottom';
+import GoTop from './component/GoTop';
 import Home from './routes/Home';
 import Classify from './routes/Classify';
 import Mycourse from './routes/Mycourse';
@@ -42,6 +43,9 @@ render(<Provider store={store}>
                     </Switch>
                 </main>
 
+                {/*GOTOP*/}
+                <GoTop/>
+                
                 {/*FOOTER*/}
                 <NavBottom/>
             </div>

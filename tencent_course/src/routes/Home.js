@@ -29,6 +29,7 @@ class Home extends React.Component {
     render() {
         let {bannerData, courseData} = this.props;
         return <section className={'homeBox'}>
+
             {/*<Switch className={'banner'}>
                 <Route path='/course' exact component={List}/>
                 <Route path='/course/Info' component={Info}/>
@@ -38,11 +39,24 @@ class Home extends React.Component {
             <div className="banner">
                 {bannerData && bannerData.length !== 0 ? (<Carousel autoplay>
                     {bannerData.map((item, index) => {
-                        let {title,scr} = item;
+                        let {title, scr} = item;
                         return <div key={index}><img src={scr} alt={title}/></div>
                     })}
-                </Carousel>) : ''}
+                    </Carousel>) : ''}
             </div>
+
+            {/*<Carousel autoplay>
+                {IMG_DATA.map((item, index) => {
+                    return <div key={index}><img src={item.pic} alt=""/></div>
+                })}
+            </Carousel>*/}
+            {/*<div className={'banner'}>
+                <Carousel autoplay>
+                    {IMG_DATA.map((item, index) => {
+                        return <div key={index}><img src={item.pic} alt=""/></div>
+>>>>>>> 9695985eb88ec2e4c175ab91f766aa00d1547551
+                    })}
+                */}
 
           <div className="courseList">
                 <ul className={'classLive clearfix'}>

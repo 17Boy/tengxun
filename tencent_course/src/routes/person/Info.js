@@ -2,28 +2,33 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link} from 'react-router-dom';
 import action from '../../store/action/index';
-import {Icon} from 'antd';
+import {Icon, Button} from 'antd';
 import '../../static/css/person/info.less';
+import {exitLogin} from "../../api/person";
 
 class Info extends React.Component {
     constructor(props, context) {
         super(props, context);
-        let {userInfo} = this.props;
-        console.log(userInfo, 'constructor');
+        /*this.state = {
+            isLogin: false
+        }*/
     }
 
-    componentWillUpdate() {
-        let {userInfo} = this.props;
-        console.log(userInfo, 'update');
-        if (userInfo) {
-            let {name = null} = userInfo;
-            this.name = name;
-        }
+    async componentWillMount() {
+        /*let result = await checkLogin(),
+            isLogin = parseFloat(result.code) === 0 ? true : false;*/
+        this.props.queryUserInfo();
+        //this.setState({isLogin});
     }
+
+    /*componentWillUpdate(){
+        console.log('willUndate');
+        //this.props.queryUserInfo();
+    }*/
+
 
     render() {
         let {userInfo} = this.props;
-        console.log(userInfo);
 
         return <div className='personBaseInfo'>
             <header>
@@ -80,7 +85,19 @@ class Info extends React.Component {
                     </div>
                 </li>
             </ul>
+            {userInfo ? <Button
+                type={'danger'}
+                className={'exitLogin'}
+                onClick={this.handleExit}
+            >退 出 登 录</Button> : ''}
         </div>;
+    }
+
+    handleExit = async () => {
+        await exitLogin();
+        /*let result = await checkLogin(),
+            isLogin = parseFloat(result.code) === 0 ? true : false;*/
+        this.props.queryUserInfo();
     }
 }
 
