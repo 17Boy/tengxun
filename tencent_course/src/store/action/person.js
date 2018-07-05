@@ -1,11 +1,17 @@
 import * as TYPES from '../action-types';
-import {queryInfo} from '../../api/person';
+import { queryInfo, queryList } from '../../api/person';
 
 let person = {
-    queryUserInfo(){
+    queryUserInfo() {
         return {
-            type:TYPES.QUERY_USER_INFO,
-            payload:queryInfo()
+            type: TYPES.QUERY_USER_INFO,
+            payload: queryInfo()
+        }
+    },
+    queryList() {
+        return {
+            type: TYPES.COURSE_DETAILS,
+            payload: queryList()
         }
     }
 };

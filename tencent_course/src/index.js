@@ -24,6 +24,7 @@ import Detail from './routes/course/Detail';
 import Classify from './routes/Classify';
 import Mycourse from './routes/Mycourse';
 import Person from './routes/Person';
+import courseDetails from './routes/course/CourseDetails';
 
 
 /*RENDER*/
@@ -42,6 +43,7 @@ render(<Provider store={store}>
                         <Route path='/classify' component={Classify}/>
                         <Route path='/mycourse' component={Mycourse}/>
                         <Route path='/person' component={Person}/>
+                        <Route path='/courseDetails' component={courseDetails}/>
                         <Redirect to='/course'/>
                     </Switch>
                 </main>
