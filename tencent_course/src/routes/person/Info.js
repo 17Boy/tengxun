@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter, Link,Route} from 'react-router-dom';
 import action from '../../store/action/index';
 import {Icon, Button} from 'antd';
 import '../../static/css/person/info.less';

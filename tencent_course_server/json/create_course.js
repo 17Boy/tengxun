@@ -128,7 +128,6 @@ let ary = [
 
 
         "time":"18:00",
-
         "scr":"http://10.url.cn/qqcourse_logo_rn/ajNVdqHZLLAkNAUrrTNJO8FlE3CARK3ehFNibC6thrIrRAzDdKO6MnsJCDajfrTh3VNUbLq8t44k/510?tp=webp",
         "type":5,
         "title":"(J) English - 搞怪实用英语口语-录播",

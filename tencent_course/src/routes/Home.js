@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {Carousel} from 'antd';
 import '../static/css/home.less';
 import {Switch,Route,Redirect} from 'react-router-dom';
-
 import action from "../store/action";
+
+import Search from '../component/Search';
 
 let IMG_DATA = [];
 for (let i = 1; i <= 6; i++) {
@@ -28,7 +29,8 @@ class Home extends React.Component {
     render() {
         let {bannerData, courseData} = this.props;
         return <section className={'homeBox'}>
-
+            
+            
             {/*轮播图*/}
             <div className="banner">
                 {bannerData && bannerData.length !== 0 ? (<Carousel autoplay>
