@@ -1,10 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter, Link,Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter, Link, Route } from 'react-router-dom';
 import action from '../../store/action/index';
-import {Icon, Button} from 'antd';
+import { Icon, Button } from 'antd';
 import '../../static/css/person/info.less';
-import {exitLogin} from "../../api/person";
+import { exitLogin } from "../../api/person";
 
 class Info extends React.Component {
     constructor(props, context) {
@@ -28,24 +28,25 @@ class Info extends React.Component {
 
 
     render() {
-        let {userInfo} = this.props;
+        let { userInfo } = this.props;
 
-        return <div className='personBaseInfo'>
+        return <section className='personBaseInfo'>
             <header>
                 <div className={'userInfo clearfix'}>
-                    <img src="" alt=""/>
-                    {userInfo ? <div><span>{userInfo.name}</span><Icon type='message'/></div>  : <Link to={'/person/login'}>
-                        <span>您还未登录！点此登录...</span>
-                    </Link>}
+                    <img src="" alt="" />
+                    {userInfo ? <div><Link to='/person/personData'><span>{userInfo.name}</span></Link><Link to='/person/inform'><Icon type='message' /></Link></div> :
+                        <Link to={'/person/login'} className='logOut'><span>您还未登录！点此登录...</span></Link>}
                 </div>
 
                 <div className={'userCollect'}>
                     <div>
-                        <Icon type="shopping-cart"/>
-                        <span>订单管理</span>
+                        <Link to='/person/orderForm' style={{ color: '#000' }}>
+                            <Icon type="shopping-cart" />
+                            <span>订单管理</span>
+                        </Link>
                     </div>
                     <div>
-                        <Icon type="heart-o"/>
+                        <Icon type="heart-o" />
                         <span>收藏</span>
                     </div>
                 </div>
@@ -55,33 +56,33 @@ class Info extends React.Component {
                 <li>
                     <div className={'clearfix'}>
                         <span>余额</span>
-                        <Icon type="right"/>
+                        <Icon type="right" />
                         <span>0</span>
                     </div>
                     <div className={'clearfix'}>
                         <span>优惠券</span>
-                        <Icon type="right"/>
+                        <Icon type="right" />
                         <span>0</span>
                     </div>
                 </li>
                 <li>
                     <div className={'clearfix'}>
                         <span>腾讯课堂大师班</span>
-                        <Icon type="right"/>
+                        <Icon type="right" />
                     </div>
                     <div className={'clearfix'}>
                         <span>上课流量免费</span>
-                        <Icon type="right"/>
+                        <Icon type="right" />
                     </div>
                 </li>
                 <li>
                     <div className={'clearfix'}>
                         <span>反馈建议</span>
-                        <Icon type="right"/>
+                        <Icon type="right" />
                     </div>
                     <div className={'clearfix'}>
                         <span>设置</span>
-                        <Icon type="right"/>
+                        <Icon type="right" />
                     </div>
                 </li>
             </ul>
@@ -90,7 +91,7 @@ class Info extends React.Component {
                 className={'exitLogin'}
                 onClick={this.handleExit}
             >退 出 登 录</Button> : ''}
-        </div>;
+        </section>;
     }
 
     handleExit = async () => {
@@ -101,4 +102,4 @@ class Info extends React.Component {
     }
 }
 
-export default withRouter(connect(state => ({...state.person}), action.person)(Info));
+export default withRouter(connect(state => ({ ...state.person }), action.person)(Info));
