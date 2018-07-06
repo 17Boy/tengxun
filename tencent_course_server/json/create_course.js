@@ -158,7 +158,7 @@ let ary = [
 
 
 let result = [];
-for (let i = 1; i <=80; i++) {
+for (let i = 1; i <=100; i++) {
     let n = Math.round(Math.random() * 4),
         item = JSON.parse(JSON.stringify(ary[n]));
     item = {id: i, ...item};

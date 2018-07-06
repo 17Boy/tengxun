@@ -12,12 +12,14 @@ let course = {
             })
         };
     },
-    queryList() {
+    queryList(payload={}) {
         return async dispatch => {
-            let listData = await queryList();
+            let {limit=10,page=1,type='all',flag='push'} = payload;
+            let result = await queryList({limit,page,type});
+            console.log(result);
             dispatch({
-                type: TYPES.COURSE_DETAILS,
-                listData
+                type: TYPES.COURSE_QUERY_LIST,
+                result
             })
         }
     },

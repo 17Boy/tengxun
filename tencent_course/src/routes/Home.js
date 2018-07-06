@@ -21,21 +21,21 @@ class Home extends React.Component {
     }
 
     async componentDidMount() {
-        let {queryBanner, bannerData, courseData, queryList, listData} = this.props;
+        let {queryBanner, bannerData, queryList, listData} = this.props;
         if (!bannerData || bannerData.length === 0) {
             queryBanner();
         }
 
-        if (listData.length === 0) {
+        if (listData.data.length === 0) {
             queryList();
         }
     }
 
     render() {
-        let {bannerData, listData} = this.props;
-
-        let live_listData = listData.slice(0, 3);
-        let class_listData = listData.slice(4, 10);
+        let {bannerData, listData:{data}} = this.props;
+        
+        let live_listData = data.slice(0, 3);
+        let class_listData = data.slice(4, 10);
         let needPay_listData = class_listData.reverse();
 
         return <section className={'homeBox'}>

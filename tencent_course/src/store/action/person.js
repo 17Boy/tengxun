@@ -10,7 +10,7 @@ let person = {
     },
     queryList() {
         return {
-            type: TYPES.COURSE_DETAILS,
+            type: TYPES.COURSE_QUERY_LIST,
             payload: queryList()
         }
     }

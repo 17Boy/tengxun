@@ -16,11 +16,11 @@ class Detail extends React.Component {
     }
 
     componentWillMount() {
-        let {location: {search}, listData, bannerData} = this.props,
+        let {location: {search}, listData:{data}, bannerData} = this.props,
             {courseId = 0} = Qs.parse(search.substr(1)) || {};
 
         courseId = parseFloat(courseId);
-        let courseDetail = listData.find((item) => {
+        let courseDetail = data.find((item) => {
             return courseId === item.id;
         });
 
