@@ -11,6 +11,7 @@ import inform from './person/personMenu/inform';//通知
 import orderForm from './person/personMenu/orderForm';//订单
 import collect from './person/personMenu/collect';//收藏
 import personData from './person/personMenu/personData';//个人资料
+import balance from './person/personMenu/balance';//余额
 
 class Person extends React.Component {
     constructor(props, context) {
@@ -27,6 +28,7 @@ class Person extends React.Component {
                 <Route path='/person/personData' component={personData} />
                 <Route path='/person/orderForm' component={orderForm} />
                 <Route path='/person/collect' component={collect} />
+                <Route path='/person/balance' component={balance} />
                 <Redirect from='/person' to='/person/info' />
             </Switch>
         </section>

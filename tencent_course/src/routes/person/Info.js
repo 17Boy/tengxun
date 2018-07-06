@@ -55,9 +55,11 @@ class Info extends React.Component {
             <ul className={"lists"}>
                 <li>
                     <div className={'clearfix'}>
-                        <span>余额</span>
-                        <Icon type="right" />
-                        <span>0</span>
+                        <Link to='/person/balance'>
+                            <span>余额</span>
+                            <Icon type="right" />
+                            <span>0</span>
+                        </Link>
                     </div>
                     <div className={'clearfix'}>
                         <span>优惠券</span>
