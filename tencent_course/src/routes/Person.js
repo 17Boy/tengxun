@@ -7,6 +7,7 @@ import Login from './person/Login';
 import Register from './person/Register';
 import Info from './person/Info';
 import Tip from './person/Tip';
+import inform from './person/personMenu/inform';//通知
 
 class Person extends React.Component {
     constructor(props, context) {
@@ -19,6 +20,7 @@ class Person extends React.Component {
                 <Route path='/person/info' component={Info}/>
                 <Route path='/person/login' component={Login}/>
                 <Route path='/person/register' component={Register}/>
+                <Route path='/person/inform' component={inform} />
                 <Redirect from='/person' to='/person/info'/>
             </Switch>
         </section>
