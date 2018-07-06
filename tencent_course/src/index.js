@@ -16,27 +16,30 @@ import './static/css/reset.min.css';
 import './static/css/common.less';
 
 /*IMPORT COMPONENT*/
-import Search from './component/Search';
+import Item from './component/Item';
 import NavBottom from './component/NavBottom';
 import GoTop from './component/GoTop';
 import Home from './routes/Home';
+import Detail from './routes/course/Detail';
 import Classify from './routes/Classify';
 import Mycourse from './routes/Mycourse';
 import Person from './routes/Person';
 import courseDetails from './routes/course/CourseDetails';
+
 
 /*RENDER*/
 render(<Provider store={store}>
     <HashRouter>
         <LocaleProvider locale={zh_CN}>
             <div>
-                {/*HEADER*/}
-                <Search/>
+                {/*TopItem*/}
+                <Item/>
 
                 {/*MAIN=>ROUTE*/}
                 <main className='container'>
                     <Switch>
-                        <Route path='/course' component={Home}/>
+                        <Route path='/course' exact component={Home}/>
+                        <Route path='/course/detail' component={Detail}/>
                         <Route path='/classify' component={Classify}/>
                         <Route path='/mycourse' component={Mycourse}/>
                         <Route path='/person' component={Person}/>

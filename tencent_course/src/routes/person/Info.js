@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link, Route, Switch } from 'react-router-dom';
+import { withRouter, Link, Route } from 'react-router-dom';
 import action from '../../store/action/index';
 import { Icon, Button } from 'antd';
 import '../../static/css/person/info.less';
@@ -34,14 +34,16 @@ class Info extends React.Component {
             <header>
                 <div className={'userInfo clearfix'}>
                     <img src="" alt="" />
-                    {userInfo ? <div><span>{userInfo.name}</span><Link to='/person/inform'><Icon type='message' /></Link></div> :
+                    {userInfo ? <div><Link to='/person/personData'><span>{userInfo.name}</span></Link><Link to='/person/inform'><Icon type='message' /></Link></div> :
                         <Link to={'/person/login'} className='logOut'><span>您还未登录！点此登录...</span></Link>}
                 </div>
 
                 <div className={'userCollect'}>
                     <div>
-                        <Icon type="shopping-cart" />
-                        <span>订单管理</span>
+                        <Link to='/person/orderForm' style={{ color: '#000' }}>
+                            <Icon type="shopping-cart" />
+                            <span>订单管理</span>
+                        </Link>
                     </div>
                     <div>
                         <Icon type="heart-o" />
