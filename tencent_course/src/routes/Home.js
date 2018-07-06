@@ -21,26 +21,32 @@ class Home extends React.Component {
     }
 
     async componentDidMount() {
-        let {queryBanner, bannerData, courseData, queryList} = this.props;
+        let {queryBanner, bannerData, courseData, queryList, listData} = this.props;
         if (!bannerData || bannerData.length === 0) {
             queryBanner();
         }
-        if (courseData.data.length === 0) {
+
+        if (listData.length === 0) {
             queryList();
         }
     }
 
     render() {
-        let {bannerData, courseData} = this.props;
+        let {bannerData, listData} = this.props;
+
+        let live_listData = listData.slice(0, 3);
+        let class_listData = listData.slice(4, 10);
+        let needPay_listData = class_listData.reverse();
+
         return <section className={'homeBox'}>
-
-
             {/*轮播图*/}
             <div className="banner">
                 {bannerData && bannerData.length !== 0 ? (<Carousel autoplay>
                     {bannerData.map((item, index) => {
-                        let {title, scr} = item;
-                        return <div key={index}><img src={scr} alt={title}/></div>
+                        let {title, scr,id} = item;
+                        return <Link key={index} to={`/course/detail?courseId=${id}`}>
+                                <div><img src={scr} alt={title}/></div>
+                            </Link>
                     })}
                 </Carousel>) : ''}
 
@@ -51,13 +57,14 @@ class Home extends React.Component {
             </Carousel>*/}
             </div>
 
+            {/*课程列表*/}
             <div className="courseList">
-                {bannerData && bannerData.length !== 0 ? <ul className={'classLive'}>
+                {live_listData && live_listData.length !== 0 ? <ul className={'classLive'}>
                     <header>
                         <h2 className={'active'}>前端</h2>
                         <h2>兴趣生活</h2>
                     </header>
-                    {bannerData.map((item, index) => {
+                    {live_listData.map((item, index) => {
                         let {title, scr, teacher, time, id} = item;
                         return <Link key={index} to={{
                             pathname: '/course/detail',
@@ -93,50 +100,24 @@ class Home extends React.Component {
                             <span>Web全栈开发</span>
                         </div>
                     </div>
-                    <ul className={'clearfix'}>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[5].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[1].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[5].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[4].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[2].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[5].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                    </ul>
+                    {class_listData && class_listData.length !== 0 ?
+                        <ul className={'clearfix'}>
+                            {class_listData.map((item, index) => {
+                                let {title, scr, price, id} = item;
+                                return <Link key={index} to={{
+                                    pathname: '/course/detail',
+                                    search: `?courseId=${id}`
+                                }} onClick={this.queryCourseDetail}>
+                                    <li>
+                                        <div className={'imgStyle'}>
+                                            <img src={scr} alt=""/>
+                                        </div>
+                                        <p>{title}</p>
+                                        <span>{price}</span>
+                                    </li>
+                                </Link>
+                            })}
+                        </ul> : ''}
                 </ul>
 
                 <ul className="needPayClass">
@@ -155,57 +136,29 @@ class Home extends React.Component {
                             <span>Web全栈开发</span>
                         </div>
                     </div>
-                    <ul className={'clearfix'}>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[3].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[2].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[1].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[4].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[5].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                        <li>
-                            <div className={'imgStyle'}>
-                                <img src={IMG_DATA[1].pic} alt=""/>
-                            </div>
-                            <p>阿里前端p6架构师培养计划[动脑学院]</p>
-                            <span>免费</span>
-                        </li>
-                    </ul>
+                    {needPay_listData && needPay_listData.length !== 0 ?
+                        <ul className={'clearfix'}>
+                            {needPay_listData.map((item, index) => {
+                                let {title, scr, price, id} = item;
+                                return <Link key={index} to={{
+                                    pathname: '/course/detail',
+                                    search: `?courseId=${id}`
+                                }} onClick={this.queryCourseDetail}>
+                                    <li>
+                                        <div className={'imgStyle'}>
+                                            <img src={scr} alt=""/>
+                                        </div>
+                                        <p>{title}</p>
+                                        <span>{price}</span>
+                                    </li>
+                                </Link>
+                            })}
+                        </ul> : ''}
                 </ul>
-
-
             </div>
 
             <section className={'moreCourse'}>
-                <a>查看全部课程</a>
+                <Link to={'/course/courseList'}>查看全部课程</Link>
             </section>
         </section>
     }

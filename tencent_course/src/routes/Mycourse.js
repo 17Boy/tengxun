@@ -2,11 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../static/css/reset.min.css'
 import '../static/css/mycourse.less';
+import {queryShopCart} from '../api/course';
 
 class Mycourse extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
+    
+   async componentWillMount(){
+       let  addCourse= (await queryShopCart(0)).data;
+       console.log(addCourse);
+   }
 
     render() {
         return <section className='myCourseBox'>

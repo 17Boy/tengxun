@@ -1,5 +1,5 @@
 import * as TYPES from '../action-types';
-import { queryBanner, queryList } from '../../api/course';
+import { queryBanner, queryList ,queryShopCart} from '../../api/course';
 
 
 let course = {
@@ -19,6 +19,15 @@ let course = {
                 type: TYPES.COURSE_DETAILS,
                 listData
             })
+        }
+    },
+    queryUnpay(){
+        return async dispatch=>{
+            let result = await queryShopCart(0);
+            dispatch({
+                type:TYPES.COURSE_UNPAY,
+                result
+            });
         }
     }
 };

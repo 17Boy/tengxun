@@ -3,7 +3,7 @@ import ReactDOM, { render } from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter, NavLink, Switch, Route } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
-import '../../static/css/courseDetails.less';
+import '../../static/css/courseList.less';
 import action from '../../store/action';
 
 let data = [
@@ -15,9 +15,9 @@ let data = [
   ['规划指导', '考研英语', '考研政治', '考研数学', '专业课', '其他'],
   ['体育休闲', '健身训练', '舞蹈健美', '武术格斗', '其他'],
   ['']
-]
+];
 
-class CourseDetails extends React.Component {
+class CourseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -170,4 +170,4 @@ class CourseDetails extends React.Component {
 }
 
 
-export default withRouter(connect(state => ({ ...state.course }), action.course)(CourseDetails));
+export default withRouter(connect(state => ({ ...state.course }), action.course)(CourseList));

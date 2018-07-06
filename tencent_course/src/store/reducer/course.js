@@ -8,7 +8,8 @@ let INIT_STATE = {
         page: 1,
         data: []
     },
-    listData: []
+    listData: [],
+
 };
 export default function course(state = INIT_STATE, action) {
     state = JSON.parse(JSON.stringify(state));
@@ -22,8 +23,6 @@ export default function course(state = INIT_STATE, action) {
         case TYPES.COURSE_DETAILS:
             state.listData = action.listData.data;
             break;
-
-
     }
     return state;
 };

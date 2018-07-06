@@ -8,7 +8,7 @@ import lan from './myClassify/Language';
 import Work from './myClassify/Work';
 import Study from './myClassify/Study';
 import Interest from './myClassify/Interest';
-import CourseDetails from './course/CourseDetails';
+import CourseList from './course/CourseList';
 
 
 class Classify extends React.Component {
@@ -29,14 +29,14 @@ class Classify extends React.Component {
                 </ul>
             </div>
             <Switch>
-                <Route path='/CourseDetails' component={CourseDetails} />
+                <Route path='/CourseList' component={CourseList} />
                 <Route path='/classify/Design' component={Design} />
                 <Route path='/classify/Product' component={Product} />
                 <Route path='/classify/lan' component={lan} />
                 <Route path='/classify/Work' component={Work} />
                 <Route path='/classify/Study' component={Study} />
                 <Route path='/classify/Interest' component={Interest} />
-                <Redirect to='/classify/Design' />
+                <Redirect to='/classify/Design'/>
             </Switch>
         </section>
     }
