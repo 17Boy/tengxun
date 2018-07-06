@@ -14,15 +14,13 @@ export default function course(state = INIT_STATE, action) {
     state = JSON.parse(JSON.stringify(state));
     switch (action.type) {
         case TYPES.COURSE_QUERY_BANNER:
-            console.log(action);
             let { code, data } = action.bannerData;
-            console.log(data);
             if (parseFloat(code) === 0) {
                 state.bannerData = data;
             }
             break;
         case TYPES.COURSE_DETAILS:
-            state.listData = action.listData.data
+            state.listData = action.listData.data;
             break;
 
 
