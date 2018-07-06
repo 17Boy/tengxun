@@ -3,8 +3,10 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {Icon, Rate} from 'antd';
 import Qs from 'qs';
+import action from '../../store/action';
 
 import '../../static/css/courseDetail.less';
+import {addShopCart} from "../../api/course";
 
 let videoPoster = require('../../static/images/banner/3.jpg');
 
@@ -14,21 +16,31 @@ class Detail extends React.Component {
     }
 
     componentWillMount() {
-        let {location: {search}, bannerData} = this.props,
+        let {location: {search}, listData:{data}, bannerData} = this.props,
             {courseId = 0} = Qs.parse(search.substr(1)) || {};
 
         courseId = parseFloat(courseId);
-        let courseDetail = bannerData.find((item) => {
+        let courseDetail = data.find((item) => {
             return courseId === item.id;
         });
+
+        if (courseDetail === undefined) {
+            courseDetail = bannerData.find((item) => {
+                return courseId === item.id;
+            });
+        }
 
         this.courseDetail = courseDetail;
     }
 
     render() {
-        let {courseDetail = {}} = this;
+        let {courseDetail} = this;
+        if (courseDetail === undefined) {
+            courseDetail = {
+                tips: []
+            };
+        }
 
-        console.log(courseDetail);
         return <section className={'courseDetail'}>
             <video
                 src='http://59.108.138.11/vedu.tc.qq.com/ALWNc5BZDLYwJdTz_nvTzQSpcKyPKuxaWRtolOnVq3HM/h1417sr62j7.m701.mp4?vkey=A525BC9D5C84C4B4C44BA8F10A495FA50ABF01722E8DFA5381879D2C83270373AC90F90223BB548F3995A6219B9568DE278194317571B6C914BF4C015332F3C7A61F5424BBD8EDD4A2346CE32E2F8C8205331CC8BB67B06048BEF9DC3DBE35ED698A3DC102B017FF2EBCFCA01658C50524D27ED73355E083&br=16&platform=2&fmt=auto&level=0&sdtfrom=v3010&guid=53a1cd62d82011f9c4257f6e25c2ba41'
@@ -51,16 +63,16 @@ class Detail extends React.Component {
                     </p>
 
                     <p className={'courseCategory'}>
-                        {/*<span>{courseDetail.tips[0]}</span>
+                        <span>{courseDetail.tips[0]}</span>
                         <span>{courseDetail.tips[1]}</span>
                         <span>{courseDetail.tips[2]}</span>
-                        <span>{courseDetail.tips[3]}</span>*/}
+                        <span>{courseDetail.tips[3]}</span>
                     </p>
                     <span className={'coursePrice'}>免费</span>
                 </div>
 
                 <div className="teacherIntroduce">
-                    <h2>老师介绍 <span>(2)</span></h2>
+                    <h2>老师介绍 <span></span></h2>
                     <section>
                         <div className="teacherDetail">
                             <div>
@@ -110,21 +122,28 @@ class Detail extends React.Component {
 
             <div className="signUp clearfix">
                 <div className={'signUpCollect'}>
-                    <Icon type="heart-o" />
+                    <Icon type="heart-o"/>
                     <br/>
                     收藏
                 </div>
-                <div  className={'signUpCollect'}>
-                    <Icon type="customer-service" />
+                <div className={'signUpCollect'}>
+                    <Icon type="customer-service"/>
                     <br/>
                     咨询
                 </div>
-                <div className={'signUpBtn'}>
+                <div className={'signUpBtn'} onClick={this.addCourse}>
                     立即报名
                 </div>
             </div>
         </section>
     }
+
+    addCourse=async ()=>{
+        let result = await addShopCart(this.courseDetail.id);
+        if (parseFloat(result.code) === 0) {
+            //this.props.queryUnpay();
+        }
+    }
 }
 
-export default connect(state => state.course)(Detail);
+export default connect(state => state.course,action.course)(Detail);

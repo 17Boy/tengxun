@@ -6,7 +6,7 @@ let ary = [
         "time":"12:00",
         "type":1,
         "scr":"https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCibb3R70YCbcFA9uk0VM6TMCxqvh85Xfg1ySsREWcYawHT1xQkGRwNTyIrJ2OKMlkU/510?tp=webp",
-        "online":178,
+        "online":156,
         "total":"13万",
         "reputation":98,
         "tips":["C/C++","linux","架构","物联网"],
@@ -36,7 +36,7 @@ let ary = [
         "type":2,
         "title":"PS教程 免费 PhotoShop  美工教程 平面设计 淘宝装修 PS淘宝美工",
         "price":"免费",
-        "online":178,
+        "online":122,
         "total":"13万",
         "reputation":98,
         "tips":["PS","PhotoShop","美工","设计"],
@@ -101,7 +101,7 @@ let ary = [
         "type":4,
         "title":"2019高考数学秒杀技巧训练营",
         "price":"免费",
-        "online":178,
+        "online":278,
         "total":"13万",
         "reputation":98,
         "tips":["高考数学","2019高考"],
@@ -132,7 +132,7 @@ let ary = [
         "type":5,
         "title":"(J) English - 搞怪实用英语口语-录播",
         "price":"免费",
-        "online":178,
+        "online":338,
         "total":"13万",
         "reputation":98,
         "tips":["英语口语"],
@@ -158,7 +158,7 @@ let ary = [
 
 
 let result = [];
-for (let i = 1; i <=80; i++) {
+for (let i = 1; i <=100; i++) {
     let n = Math.round(Math.random() * 4),
         item = JSON.parse(JSON.stringify(ary[n]));
     item = {id: i, ...item};
