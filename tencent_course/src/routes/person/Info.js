@@ -34,7 +34,7 @@ class Info extends React.Component {
             <header>
                 <div className={'userInfo clearfix'}>
                     <img src="" alt=""/>
-                    {userInfo ? <span>{userInfo.name}</span> : <Link to={'/person/login'}>
+                    {userInfo ? <div><span>{userInfo.name}</span><Icon type='message'/></div>  : <Link to={'/person/login'}>
                         <span>您还未登录！点此登录...</span>
                     </Link>}
                 </div>
