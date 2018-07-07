@@ -34,12 +34,12 @@ class Detail extends React.Component {
     }
 
     render() {
-        let {courseDetail} = this;
-        if (courseDetail === undefined) {
+        let {courseDetail={}} = this;
+        /*if (courseDetail === undefined) {
             courseDetail = {
                 tips: []
             };
-        }
+        }*/
 
         return <section className={'courseDetail'}>
             <video
@@ -62,12 +62,13 @@ class Detail extends React.Component {
                         <span>好评度{courseDetail.reputation}%</span>
                     </p>
 
-                    <p className={'courseCategory'}>
+                    {courseDetail.tips&&courseDetail.tips.length!==0?<p className={'courseCategory'}>
                         <span>{courseDetail.tips[0]}</span>
                         <span>{courseDetail.tips[1]}</span>
                         <span>{courseDetail.tips[2]}</span>
                         <span>{courseDetail.tips[3]}</span>
-                    </p>
+                    </p>:null}
+
                     <span className={'coursePrice'}>免费</span>
                 </div>
 

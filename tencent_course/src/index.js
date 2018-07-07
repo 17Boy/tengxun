@@ -50,8 +50,12 @@ render(<Provider store={store}>
                 </main>
 
                 {/*GOTOP*/}
-                <GoTop/>
-                
+                <Switch>
+                    <Route path='/course' exact component={GoTop}/>
+                    <Route path='/course/courseList' component={GoTop}/>
+                    <Route path='/mycourse' component={GoTop}/>
+                </Switch>
+
                 {/*FOOTER*/}
                 <NavBottom/>
             </div>

@@ -42,7 +42,7 @@ class Info extends React.Component {
                     <div>
                         <Link to='/person/orderForm' style={{ color: '#000' }}>
                             <Icon type="shopping-cart" />
-                            <span>订单管理</span>
+                            <span>课程管理</span>
                         </Link>
                     </div>
                     <div>

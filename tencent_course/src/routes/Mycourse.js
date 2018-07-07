@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import '../static/css/reset.min.css'
 import '../static/css/mycourse.less';
 import {queryShopCart} from '../api/course';
+import {Link} from 'react-router-dom';
 
 
 class Mycourse extends React.Component {
@@ -38,16 +39,19 @@ class Mycourse extends React.Component {
             </div>
             <ul>
                 {addCourse.map((item, index) => {
-                    let {title, scr} = item;
-                    return <li key={index} className='clearfix'>
-                        <img src={scr} alt=""/>
-                        <h2>{title}</h2>
-                        <p>开始学习：第1节 贪吃蛇CANVAS小游戏开发</p>
-                        <div className='bairight'>
-                            <div className='baifenbi'>5%</div>
-                            <p>已学习</p>
-                        </div>
-                    </li>
+                    let {title, scr,id} = item;
+
+                    return  <Link key={index} to={`/course/detail?courseId=${id}`}>
+                        <li className='clearfix'>
+                            <img src={scr} alt=""/>
+                            <h2>{title}</h2>
+                            <p>开始学习：第1节 贪吃蛇CANVAS小游戏开发</p>
+                            <div className='bairight'>
+                                <div className='baifenbi'>5%</div>
+                                <p>已学习</p>
+                            </div>
+                        </li>
+                    </Link>
                 })}
             </ul>
             <p className='nomore'>没有更多数据了</p>
