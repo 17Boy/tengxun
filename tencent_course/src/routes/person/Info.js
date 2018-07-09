@@ -34,8 +34,17 @@ class Info extends React.Component {
             <header>
                 <div className={'userInfo clearfix'}>
                     <img src="" alt="" />
-                    {userInfo ? <div><Link to='/person/personData'><span>{userInfo.name}</span></Link><Link to='/person/inform'><Icon type='message' /></Link></div> :
-                        <Link to={'/person/login'} className='logOut'><span>您还未登录！点此登录...</span></Link>}
+                    {userInfo ? <div>
+                            <Link to='/person/personData' className='hadLogin'>
+                                <span>{userInfo.name}</span>
+                            </Link>
+                            <Link to='/person/inform'>
+                                <Icon type='message' />
+                            </Link>
+                        </div> :
+                        <Link to={'/person/login'} className='logOut'>
+                            <span>您还未登录！点此登录...</span>
+                        </Link>}
                 </div>
 
                 <div className={'userCollect'}>

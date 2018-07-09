@@ -16,12 +16,22 @@ let course = {
         return async dispatch => {
             let {limit=10,page=1,type='all',flag='push'} = payload;
             let result = await queryList({limit,page,type});
-            console.log(result);
             dispatch({
                 type: TYPES.COURSE_QUERY_LIST,
                 result
             })
         }
+    },
+    searchList(payload={}){
+      return async dispatch=>{
+          let {limit=10,page=1,type} = payload;
+          let search_result = await queryList({limit,page,type});
+          dispatch({
+              type:TYPES.COURSE_SEARCH_LIST,
+              search_result
+          })
+
+      }
     },
     queryUnpay(){
         return async dispatch=>{

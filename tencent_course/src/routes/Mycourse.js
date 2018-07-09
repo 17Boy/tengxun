@@ -2,31 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../static/css/reset.min.css'
 import '../static/css/mycourse.less';
-import {queryShopCart} from '../api/course';
 import {Link} from 'react-router-dom';
 
 
 class Mycourse extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {
-            addCourse: []
-        }
-    }
-
-    async componentWillMount() {
-        let addCourse = (await queryShopCart(0)).data;
-        console.log(addCourse, 2);
-        this.setState({
-            addCourse
-        });
-        //this.addCourse = addCourse;
     }
 
     render() {
-        //let  addCourse= (await queryShopCart(0)).data;
-        let {addCourse} = this.state;
-        console.log(addCourse, 1);
+        let myCourse = this.props.shopCart.unpay;
+
         return <section className='myCourseBox'>
             <div className='timeLineBox'>
                 <p className='top'>今天上课</p>
@@ -37,11 +23,10 @@ class Mycourse extends React.Component {
                     <button>时长兑奖励</button>
                 </p>
             </div>
-            <ul>
-                {addCourse.map((item, index) => {
-                    let {title, scr,id} = item;
-
-                    return  <Link key={index} to={`/course/detail?courseId=${id}`}>
+            {myCourse !== [] ? <ul>
+                {myCourse.map((item, index) => {
+                    let {title, scr, id} = item;
+                    return <Link key={index} to={`/course/detail?courseId=${id}`}>
                         <li className='clearfix'>
                             <img src={scr} alt=""/>
                             <h2>{title}</h2>
@@ -53,11 +38,11 @@ class Mycourse extends React.Component {
                         </li>
                     </Link>
                 })}
-            </ul>
-            <p className='nomore'>没有更多数据了</p>
+            </ul> : ''}
 
+            <p className='nomore'>没有更多数据了</p>
         </section>
     }
 }
 
-export default connect()(Mycourse);
+export default connect(state => state.course, null)(Mycourse);

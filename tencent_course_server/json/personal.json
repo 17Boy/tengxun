@@ -40,5 +40,12 @@
     "email": "1234567890@qq.com",
     "phone": "1234567890",
     "password": "8376ac810bb9f231d28fcf1f"
+  },
+  {
+    "id": 7,
+    "name": "user2",
+    "email": "user2@163.com",
+    "phone": "12345678901",
+    "password": "f02f750e65ebba95ab9493cd"
   }
 ]
