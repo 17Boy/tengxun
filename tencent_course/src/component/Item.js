@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter,Switch,Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter, Switch, Route } from 'react-router-dom';
 import action from '../store/action';
 
 import Search from './Search.js';
@@ -15,7 +15,13 @@ class Item extends React.Component {
     render() {
         return <Switch>
             <Route path={'/course'}>
-                <Search/>
+                <Search />
+            </Route>
+            <Route path={'/person/orderForm'}>
+                <Search />
+            </Route>
+            <Route path={'/person/balance'}>
+                <Search />
             </Route>
             <Route path={'/classify'}>
                 <h2 className={'item'}>分 类</h2>
@@ -30,4 +36,4 @@ class Item extends React.Component {
     }
 }
 
-export default withRouter(connect(null,action.course)(Item));
+export default withRouter(connect(null, action.course)(Item));
