@@ -25,6 +25,7 @@ import Classify from './routes/Classify';
 import Mycourse from './routes/Mycourse';
 import Person from './routes/Person';
 import courseList from './routes/course/CourseList';
+import SearchList from './routes/course/SearchList';
 
 
 /*RENDER*/
@@ -41,6 +42,7 @@ render(<Provider store={store}>
                         <Route path='/course' exact component={Home}/>
                         <Route path='/course/detail' component={Detail}/>
                         <Route path='/course/courseList' component={courseList}/>
+                        <Route path='/course/searchList' component={SearchList}/>
                         <Route path='/classify' component={Classify}/>
                         <Route path='/mycourse' component={Mycourse}/>
                         <Route path='/person' component={Person}/>
@@ -50,8 +52,13 @@ render(<Provider store={store}>
                 </main>
 
                 {/*GOTOP*/}
-                <GoTop/>
-                
+                <Switch>
+                    <Route path='/course' exact component={GoTop}/>
+                    <Route path='/course/courseList' component={GoTop}/>
+                    <Route path='/course/searchList' component={GoTop}/>
+                    <Route path='/mycourse' component={GoTop}/>
+                </Switch>
+
                 {/*FOOTER*/}
                 <NavBottom/>
             </div>

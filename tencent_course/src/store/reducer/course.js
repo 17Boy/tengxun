@@ -8,7 +8,17 @@ let INIT_STATE = {
         page: 1,
         data: []
     },
-
+    shopCart: {
+        unpay: [],
+        selectAll: true
+    },
+    searchCourse: {
+        total: 1,
+        limit: 10,
+        page: 1,
+        type: null,
+        data: []
+    }
 };
 export default function course(state = INIT_STATE, action) {
     state = JSON.parse(JSON.stringify(state));
@@ -28,6 +38,27 @@ export default function course(state = INIT_STATE, action) {
                 state.listData.data = state.listData.data.concat(result.data);
             }
             break;
+        case TYPES.COURSE_SEARCH_LIST:
+            let {search_result} = action;
+            let {searchCourse} = state;
+            if (search_result.code === 0) {
+                searchCourse.total = parseFloat(search_result.total);
+                searchCourse.limit = parseFloat(search_result.limit);
+                searchCourse.page = parseFloat(search_result.page);
+                if (searchCourse.data !== []) {
+                    searchCourse.type === search_result.data[0].type ? searchCourse.data = searchCourse.data.concat(search_result.data) : (searchCourse.data = search_result.data, searchCourse.type = search_result.data[0].type);
+                } else {
+                    searchCourse.data = search_result.data;
+                    searchCourse.type = search_result.data[0].type;
+                }
+            }
+            break;
+        case TYPES.COURSE_UNPAY:
+            if (parseFloat(action.result.code) === 0) {
+                state.shopCart.unpay = action.result.data;
+            }
+            break;
+
     }
     return state;
 };

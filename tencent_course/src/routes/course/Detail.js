@@ -6,40 +6,31 @@ import Qs from 'qs';
 import action from '../../store/action';
 
 import '../../static/css/courseDetail.less';
-import {addShopCart} from "../../api/course";
+import {addShopCart, queryInfo,removeShopCart} from "../../api/course";
 
-let videoPoster = require('../../static/images/banner/3.jpg');
 
 class Detail extends React.Component {
     constructor(props, context) {
-        super(props, context)
+        super(props, context);
+        this.state={
+            courseDetail:{}
+        }
     }
 
-    componentWillMount() {
-        let {location: {search}, listData:{data}, bannerData} = this.props,
+    async componentDidMount() {
+        let {location: {search}} = this.props,
             {courseId = 0} = Qs.parse(search.substr(1)) || {};
-
         courseId = parseFloat(courseId);
-        let courseDetail = data.find((item) => {
-            return courseId === item.id;
-        });
-
-        if (courseDetail === undefined) {
-            courseDetail = bannerData.find((item) => {
-                return courseId === item.id;
-            });
-        }
-
-        this.courseDetail = courseDetail;
+        let courseDetail = (await queryInfo(courseId)).data;
+        this.setState({
+            courseDetail,
+        })
     }
 
     render() {
-        let {courseDetail} = this;
-        if (courseDetail === undefined) {
-            courseDetail = {
-                tips: []
-            };
-        }
+        let {shopCart} = this.props;
+        let {courseDetail} = this.state;
+        console.log(courseDetail);
 
         return <section className={'courseDetail'}>
             <video
@@ -62,13 +53,14 @@ class Detail extends React.Component {
                         <span>好评度{courseDetail.reputation}%</span>
                     </p>
 
-                    <p className={'courseCategory'}>
+                    {courseDetail.tips && courseDetail.tips.length !== 0 ? <p className={'courseCategory'}>
                         <span>{courseDetail.tips[0]}</span>
                         <span>{courseDetail.tips[1]}</span>
                         <span>{courseDetail.tips[2]}</span>
                         <span>{courseDetail.tips[3]}</span>
-                    </p>
-                    <span className={'coursePrice'}>免费</span>
+                    </p> : null}
+
+                    <span className={'coursePrice'}>{courseDetail.price}</span>
                 </div>
 
                 <div className="teacherIntroduce">
@@ -93,11 +85,12 @@ class Detail extends React.Component {
 
                 <div className="courseIntroduce">
                     <h2>课程详情</h2>
-                    <div>
-                        <img src={courseDetail.detail} alt=""/>
-                    </div>
+                    {courseDetail.detail?<div>
+                        {courseDetail.detail.map((item,index)=>{
+                            return <img src={item} alt="" key={index}/>
+                        })}
+                    </div>:''}
                 </div>
-
                 <div className="studentReviews">
                     <h2 className={'clearfix'}>学员评论
                         <span>更多
@@ -120,7 +113,23 @@ class Detail extends React.Component {
                 </div>
             </div>
 
-            <div className="signUp clearfix">
+            {shopCart.unpay.find((item) => {
+                return courseDetail.id === item.id
+            }) ? <div className="signUp clearfix">
+                <div className={'signUpCollect'}>
+                    <Icon type="heart-o"/>
+                    <br/>
+                    收藏
+                </div>
+                <div className={'signUpCollect'}>
+                    <Icon type="customer-service"/>
+                    <br/>
+                    咨询
+                </div>
+                <div className={'unSignUpBtn'} onClick={this.removeCourse}>
+                    取消报名
+                </div>
+            </div> : <div className="signUp clearfix">
                 <div className={'signUpCollect'}>
                     <Icon type="heart-o"/>
                     <br/>
@@ -134,16 +143,23 @@ class Detail extends React.Component {
                 <div className={'signUpBtn'} onClick={this.addCourse}>
                     立即报名
                 </div>
-            </div>
+            </div>}
         </section>
     }
 
-    addCourse=async ()=>{
-        let result = await addShopCart(this.courseDetail.id);
+    addCourse = async () => {
+        let result = await addShopCart(this.state.courseDetail.id);
         if (parseFloat(result.code) === 0) {
-            //this.props.queryUnpay();
+            this.props.queryUnpay();
+        }
+    };
+
+    removeCourse = async () =>{
+        let result = await removeShopCart(this.state.courseDetail.id);
+        if (parseFloat(result.code) === 0) {
+            this.props.queryUnpay();
         }
     }
 }
 
-export default connect(state => state.course,action.course)(Detail);
+export default connect(state => state.course, action.course)(Detail);

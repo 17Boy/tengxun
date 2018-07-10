@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter,Switch,Route} from 'react-router-dom';
+import action from '../store/action';
 
 import Search from './Search.js';
 
 
 class Item extends React.Component {
     constructor(props, context) {
-        super(props, context)
+        super(props, context);
+        this.props.queryUnpay();
     }
 
     render() {
@@ -28,4 +30,4 @@ class Item extends React.Component {
     }
 }
 
-export default withRouter(connect()(Item));
+export default withRouter(connect(null,action.course)(Item));
