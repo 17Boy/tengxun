@@ -46,8 +46,10 @@ class Info extends React.Component {
                         </Link>
                     </div>
                     <div>
+                    <Link to='/person/collect' style={{color:'#000'}}>
                         <Icon type="heart-o" />
                         <span>收藏</span>
+                        </Link>
                     </div>
                 </div>
             </header>
@@ -55,7 +57,7 @@ class Info extends React.Component {
             <ul className={"lists"}>
                 <li>
                     <div className={'clearfix'}>
-                        <Link to='/person/balance'>
+                        <Link to='/person/balance' style={{color:'#000'}}>
                             <span>余额</span>
                             <Icon type="right" />
                             <span>0</span>
